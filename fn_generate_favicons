@@ -1,15 +1,15 @@
 #!/usr/bin/env node
 // $HOME/.local/bin/fn_generate_favicons
 
-import fs from 'fs';
-import path from 'path';
-import { readFile, writeFile } from 'fs/promises';
-import imagemin from 'imagemin';
-import imageminPngquant from 'imagemin-pngquant';
-import sharp from 'sharp';
-import { optimize } from 'svgo';
-import png2icons from 'png2icons';
-import { exit } from 'process';
+import fs from "fs";
+import path from "path";
+import { readFile, writeFile } from "fs/promises";
+import imagemin from "imagemin";
+import imageminPngquant from "imagemin-pngquant";
+import sharp from "sharp";
+import { optimize } from "svgo";
+import png2icons from "png2icons";
+import { exit } from "process";
 
 async function main() {
   const args = {};
@@ -18,16 +18,20 @@ async function main() {
   for (let i = 0; i < cliArgs.length; i++) {
     const arg = cliArgs[i];
     switch (arg) {
-      case '--png': case '-p':
+      case "--png":
+      case "-p":
         args.pngSrc = cliArgs[++i];
         break;
-      case '--svg': case '-s':
+      case "--svg":
+      case "-s":
         args.svgSrc = cliArgs[++i];
         break;
-      case '--dist': case '-d':
+      case "--dist":
+      case "-d":
         args.dist = cliArgs[++i];
         break;
-      case '--help': case '-h':
+      case "--help":
+      case "-h":
         console.log(`
   Usage:
     fn_generate_favicons [--png <path>] [--svg <path>] [--dist <output-dir>]
@@ -55,41 +59,44 @@ async function main() {
     }
   }
 
-  const pngSrc = path.resolve(process.cwd(), args.pngSrc || 'favicon_src.png');
-const svgSrc = path.resolve(process.cwd(), args.svgSrc || 'favicon_src.svg');
-  if(!fs.existsSync(pngSrc)) {
-    console.log('PNG source file not found');
-    exit(1)
+  const pngSrc = path.resolve(process.cwd(), args.pngSrc || "favicon_src.png");
+  const svgSrc = path.resolve(process.cwd(), args.svgSrc || "favicon_src.svg");
+  if (!fs.existsSync(pngSrc)) {
+    console.log("PNG source file not found");
+    exit(1);
   }
-  if(!fs.existsSync(svgSrc)) {
-    console.log('SVG source file not found');
-    exit(1)
+  if (!fs.existsSync(svgSrc)) {
+    console.log("SVG source file not found");
+    exit(1);
   }
 
- const distDir = args.dist || fs.mkdtempSync(path.join(process.cwd(), 'favicons_'));
+  const distDir = args.dist || fs.mkdtempSync(path.join(process.cwd(), "favicons_"));
 
   if (args.dist) fs.mkdirSync(distDir, { recursive: true });
 
   try {
     const pngBuffer = await readFile(pngSrc);
     const optimizedPng = await sharp(pngBuffer)
-      .resize(32, 32, { fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } })
+      .resize(32, 32, {
+        fit: "contain",
+        background: { r: 0, g: 0, b: 0, alpha: 0 },
+      })
       .png({ compressionLevel: 9, palette: true, colors: 128 })
       .toBuffer();
 
     const icoBuffer = png2icons.createICO(optimizedPng, 2, 256, true);
-    await writeFile(path.join(distDir, 'favicon.ico'), icoBuffer);
+    await writeFile(path.join(distDir, "favicon.ico"), icoBuffer);
   } catch (err) {
-    console.error('ICO generation failed:', err.message);
+    console.error("ICO generation failed:", err.message);
   }
 
   const pngSizes = [
-    { name: 'favicon-16x16.png', size: 16 },
-    { name: 'favicon-32x32.png', size: 32 },
-    { name: 'favicon-48x48.png', size: 48 },
-    { name: 'apple-touch-icon.png', size: 180 },
-    { name: 'icon-192.png', size: 192 },
-    { name: 'icon-512.png', size: 512 }
+    { name: "favicon-16x16.png", size: 16 },
+    { name: "favicon-32x32.png", size: 32 },
+    { name: "favicon-48x48.png", size: 48 },
+    { name: "apple-touch-icon.png", size: 180 },
+    { name: "icon-192.png", size: 192 },
+    { name: "icon-512.png", size: 512 },
   ];
 
   await Promise.all(
@@ -97,30 +104,40 @@ const svgSrc = path.resolve(process.cwd(), args.svgSrc || 'favicon_src.svg');
       try {
         const outputPath = path.join(distDir, name);
         await sharp(pngSrc)
-          .resize(size, size, { fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } })
+          .resize(size, size, {
+            fit: "contain",
+            background: { r: 0, g: 0, b: 0, alpha: 0 },
+          })
           .png({ compressionLevel: 6 })
           .toFile(outputPath);
 
         await imagemin([outputPath], {
           destination: distDir,
-          plugins: [imageminPngquant({ quality: [0.7, 0.85] })]
+          plugins: [imageminPngquant({ quality: [0.7, 0.85] })],
         });
       } catch (err) {
         console.error(`Failed to process ${name}:`, err.message);
       }
-    })
+    }),
   );
 
   try {
-    const svgContent = await readFile(svgSrc, 'utf8');
+    const svgContent = await readFile(svgSrc, "utf8");
     const optimized = optimize(svgContent, {
       multipass: true,
-      plugins: [{ name: 'preset-default', params: { overrides: { removeViewBox: false } } }]
+      plugins: [
+        {
+          name: "preset-default",
+          params: { overrides: { removeViewBox: false } },
+        },
+      ],
     });
-    await writeFile(path.join(distDir, 'favicon.svg'), optimized.data);
+    await writeFile(path.join(distDir, "favicon.svg"), optimized.data);
   } catch (err) {
-    console.error('SVG optimization failed:', err.message);
+    console.error("SVG optimization failed:", err.message);
   }
 }
 
-main().catch(err => {console.error('Unexpected error:', err.message)});
+main().catch((err) => {
+  console.error("Unexpected error:", err.message);
+});
