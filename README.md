@@ -106,7 +106,3 @@ Once generated, you would typically include these favicons in the `<head>` secti
 ## License
 
 MIT Licensed — See [LICENSE](LICENSE.txt) for details.
-
----
-
-⚡ Maintained by [@theEvilGrinch](https://github.com/theEvilGrinch)
