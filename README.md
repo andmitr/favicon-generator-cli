@@ -67,7 +67,7 @@ multiple sizes and formats (ICO, Apple Touch Icon, Android Chrome, etc.) ready f
 
    or **download only the script:**
    ```bash
-   curl -o ./favgen https://github.com/andmitr/favicon-generator-cli/blob/master/fn_generate_favicons
+   curl -o ~/.local/bin/favgen https://raw.githubusercontent.com/andmitr/favicon-generator-cli/master/fn_generate_favicons
    ```
 
 3. **Make the script executable:**
