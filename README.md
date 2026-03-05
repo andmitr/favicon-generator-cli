@@ -1,99 +1,107 @@
-# CLI Favicon Generator
+# Favicon Generator CLI
 
-`fn_generate_favicons` is a powerful and efficient Node.js-based command-line interface utility designed to streamline the process of creating a comprehensive set of favicons for your web projects. Simply provide your source PNG and SVG images, and this tool will generate optimized favicons in various sizes and formats, ensuring your website looks crisp and professional across all devices and browsers.
+A Node.js CLI tool that generates a full set of favicons from PNG and SVG source images. Outputs optimized icons in 
+multiple sizes and formats (ICO, Apple Touch Icon, Android Chrome, etc.) ready for cross-browser use.
+
+[![License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square&logo=opensource)](LICENSE)
+
+## Table of Contents
+
+- [Features](#features)
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Sponsorship](#sponsorship)
+- [License](#license)
 
 ## Features
 
--   **Comprehensive Favicon Set:** Generates all essential favicon formats:
-    -   `favicon.ico` (multi-size, from 16px up to 256px, derived from PNG)
-    -   `favicon.svg` (optimized from source SVG)
-    -   `favicon-16x16.png`
-    -   `favicon-32x32.png`
-    -   `favicon-48x48.png`
-    -   `apple-touch-icon.png` (180x180)
-    -   `icon-192.png` (for Android manifest)
-    -   `icon-512.png` (for Android manifest)
--   **Dual Source Input:** Accepts both PNG and SVG files as source material for maximum flexibility and quality. Defaults to `./favicon_src.png` and `./favicon_src.svg`.
--   **Advanced Image Optimization:** Leverages industry-standard libraries:
-    -   `sharp` for robust PNG resizing.
-    -   `imagemin` with `imagemin-pngquant` for efficient PNG compression.
-    -   `svgo` for thorough SVG optimization.
-    -   `png2icons` for standards-compliant ICO file generation.
--   **Customizable Output:** Specify your preferred output directory (defaults to creating a temporary directory like `favicons_xxxx` in the current working directory if not specified).
--   **User-Friendly CLI:** Simple and intuitive command-line arguments with a built-in help option (`--help` or `-h`).
--   **Error Handling:** Provides feedback on common issues like missing source files or image processing failures.
--   **Cross-Platform:** Built with Node.js, ensuring compatibility across various operating systems where Node.js is installed.
+- **Generated files:**
+  - `favicon.ico` (multi-size: 16px, 32px, 48px, 256px from PNG)
+  - `favicon.svg` (optimized from source SVG)
+  - `favicon-16x16.png`
+  - `favicon-32x32.png`
+  - `favicon-48x48.png`
+  - `apple-touch-icon.png` (180×180px)
+  - `icon-192.png` and `icon-512.png` (for Android/PWA manifest)
+- **PNG and SVG input:** Accepts both formats as source material. Defaults
+  to `./favicon_src.png` and `./favicon_src.svg`.
+- **Image optimization:** Uses `sharp` for PNG resizing,
+  `imagemin` + `imagemin-pngquant` for PNG compression, `svgo` for SVG
+  optimization, and `png2icons` for ICO generation.
+- **Custom output directory:** Specify an output path with `--dist`, or let
+  the tool create a `favicons_xxxx` directory in the current working directory.
+- **CLI arguments:** Simple command-line interface with `--help` for usage
+  details.
+- **Error handling:** Reports missing source files and image processing
+  failures.
 
-**Note on PWA Maskable Icons:** This generator does not currently create a dedicated 512x512 maskable icon specifically designed for PWA "safe-zone" compatibility. You will need to create this manually. A helpful tool for this is [maskable.app](https://maskable.app/editor). Ensure your PWA manifest correctly references your maskable icon alongside other icons.
+> **Note:** This tool does not generate a 512×512 maskable icon for PWA
+> safe-zone compliance. This must be created separately using a tool
+> like [maskable.app](https://maskable.app/editor). Make sure your PWA
+> manifest references the maskable icon alongside other icons.
 
 ## Prerequisites
 
--   [Node.js](https://nodejs.org/) (version 14.x or higher is recommended, as the script uses ES modules).
--   The script requires the following Node.js packages to be installed and accessible in your environment. If you're using this script as part of a Node.js project, you would typically install these as development dependencies:
-    ```bash
-    npm install --save-dev imagemin imagemin-pngquant sharp svgo png2icons
-    # or
-    yarn add --dev imagemin imagemin-pngquant sharp svgo png2icons
-    ```
-    If you intend to use the script globally or outside a Node.js project structure, ensure these packages are globally installed or otherwise resolvable by Node.js.
+- [Node.js](https://nodejs.org/) v18 or higher (the script uses ES modules)
+- npm packages:
+  - imagemin 
+  - imagemin-pngquant
+  - sharp
+  - svgo
+  - png2icons
+  
+## Installation
 
-## Getting Started & Installation
+1. **Install dependencies:**
+   ```bash
+   npm install -g imagemin imagemin-pngquant sharp svgo png2icons
+   ```
 
-1.  Download or copy the script content and save it as `fn_generate_favicons` (or `fn_generate_favicons.js`).
-2.  Make it Executable:
-    ```bash
-    chmod +x /path/to/your/script/fn_generate_favicons
-    ```
-3. To make the script accessible from any directory by simply typing its name, move it to a directory that is part of your system's `PATH` environment variable.
- For user-specific executables, consider placing the script in a directory that is part of your `PATH` environment variable. Common locations include `~/.local/bin` or `~/bin`. If you choose a directory, ensure it exists and is added to your `PATH`. This is typically done by adding a line like `export PATH="$HOME/your-chosen-bin-directory:$PATH"` to your shell's configuration file (e.g., `~/.bashrc`, `~/.zshrc`). After modifying the configuration file, you'll need to source it (e.g., `source ~/.bashrc`) or open a new terminal session for the changes to take effect.
-    ```bash
-    cp /path/to/your/script/fn_generate_favicons ~/.local/bin/
-    ```
-    Other common locations (which might require root/sudo privileges) include `/usr/local/bin`.
+2. **Clone the repository and copy the script to a directory in your `PATH` variable for global access
+   (e.g. `~/.local/bin/`), rename the script if needed (e.g. to `favgen`):**
+   ```bash
+   git clone https://github.com/andmitr/favicon-generator-cli.git
+   cp ./favicon-generator-cli/fn_generate_favicons ~/.local/bin/favgen
+   ```   
 
-    Once installed in a directory within your `PATH`, you can run the script by simply typing `fn_generate_favicons` in your terminal.
- 
-4. Ensure you have your `favicon_src.png` and `favicon_src.svg` source files ready. By default, the script looks for these in the current directory from which it's run, but you can specify other paths using the `--png` and `--svg` arguments.
+   or **download only the script:**
+   ```bash
+   curl -o ./favgen https://github.com/andmitr/favicon-generator-cli/blob/master/fn_generate_favicons
+   ```
+
+3. **Make the script executable:**
+   ```bash
+   chmod +x ~/.local/bin/favgen
+   ```
 
 ## Usage
 
-Run the script from your terminal. The command structure depends on how you installed it:
-
-*   If run from the directory containing the script:
-    ```bash
-    ./fn_generate_favicons [--png <path>] [--svg <path>] [--dist <output-dir>]
-    ```
-*   If the script is in your PATH:
-    ```bash
-    fn_generate_favicons [--png <path>] [--svg <path>] [--dist <output-dir>]
-    ```
+```bash
+favgen [--png <path>] [--svg <path>] [--dist <output-dir>]
+```
 
 ### Arguments
 
--   `--png or -p <path>`: Path to the source PNG image.
-    Defaults to `./favicon_src.png` if not specified.
--   `--svg or -s <path>`: Path to the source SVG image.
-    Defaults to `./favicon_src.svg` if not specified.
--   `--dist or -d <output-dir>`: The directory where the generated favicon files will be saved.
-    If not specified, a temporary directory named `favicons_xxxx` (where `xxxx` is a random string) will be created in the current working directory.
--   `--help or -h`: Displays a help message detailing usage, arguments, and the list of generated favicons, then exits.
+| Argument | Alias | Default           | Description                          |
+|----------|-------|-------------------|--------------------------------------|
+| --png    | -p    | ./favicon_src.png | Path to the source PNG image         |
+| --svg    | -s    | ./favicon_src.svg | Path to the source SVG image         |
+| --dist   | -d    | ./favicons_xxxx   | Output directory for generated files |
+| --help   | -h    | —                 | Show help message and exit           |
 
-### Example
-
-Generate favicons from `./myicon.png` and `./myicon.svg`, and save them to the `./favs` directory:
+### Examples
 ```bash
-  fn_generate_favicons --png ./myicon.png --svg ./myicon.svg --dist ./favs
+# Custom source files and output directory
+favgen --png ./myicon.png --svg ./myicon.svg --dist ./favs
+
+# Default source files, custom output directory
+favgen --dist icons
 ```
 
-If your source files are named `favicon_src.png` and `favicon_src.svg` in the current directory, and you want to output to `icons`:
-```bash
-    fn_generate_favicons --dist icons
-```
+### HTML Usage
 
-## How to Use in HTML
-
-Once generated, you would typically include these favicons in the `<head>` section of your HTML files:
-
+Add the generated favicons to the `<head>` of your HTML:
 ```html
 <link rel="icon" href="/favicon.ico" type="image/x-icon">
 <link rel="icon" href="/favicon.svg" sizes="any" type="image/svg+xml">
@@ -101,8 +109,26 @@ Once generated, you would typically include these favicons in the `<head>` secti
 <link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png">
 <link rel="icon" href="/favicon-48x48.png" sizes="48x48" type="image/png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" type="image/png">
-<link rel="manifest" href="/manifest.webmanifest"> <!-- /manifest.webmanifest would reference icon-192.png and icon-512.png -->
+<link rel="manifest" href="/manifest.webmanifest">
 ```
+Reference `icon-192.png` and `icon-512.png` in your `manifest.webmanifest`.
+
+## Sponsorship
+
+[![Boosty](https://img.shields.io/badge/Boosty-F15F2C?style=for-the-badge&logo=boosty&logoColor=white)![Support](https://img.shields.io/badge/Support%20me-grey?style=for-the-badge)](https://boosty.to/andmitr/donate)
+
+![Bitcoin](https://img.shields.io/badge/Bitcoin-F7931A?style=flat&logo=bitcoin&logoColor=white&logoSize=auto)
+
+```
+1CCnwAvJYEoDVGM7vsBg2Q99cF9EHtBVaY
+```
+
+![Tether](https://img.shields.io/badge/Tether%20(USDT%20ETH)-168363?style=flat&logo=tether&logoColor=white&logoSize=auto)
+
+```
+0x54f0ccc6b2987de454f69f2814fc9202bcfb74fe
+```
+
 ## License
 
-MIT Licensed — See [LICENSE](LICENSE.txt) for details.
+MIT Licensed. See [LICENSE](LICENSE) for details.
