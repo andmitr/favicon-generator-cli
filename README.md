@@ -69,6 +69,13 @@ multiple sizes and formats (ICO, Apple Touch Icon, Android Chrome, etc.) ready f
    cp ./favicon-generator-cli/fn_generate_favicons ~/.local/bin/favgen
    ```   
 
+   or **download the latest release archive** from [Releases](https://github.com/andmitr/favicon-generator-cli/releases/latest),
+   extract and copy the script:
+   ```bash
+   tar xzf favgen-*.tar.gz
+   cp fn_generate_favicons ~/.local/bin/favgen
+   ```
+
    or **download only the script:**
    ```bash
    curl -o ~/.local/bin/favgen https://raw.githubusercontent.com/andmitr/favicon-generator-cli/master/fn_generate_favicons
