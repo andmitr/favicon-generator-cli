@@ -43,7 +43,7 @@ multiple sizes and formats (ICO, Apple Touch Icon, Android Chrome, etc.) ready f
 
 ## Prerequisites
 
-- [Node.js](https://nodejs.org/) v18 or higher (the script uses ES modules)
+- [Node.js](https://nodejs.org/) v24 LTS (tested and recommended version, specified in `.nvmrc`)
 - npm packages:
   - imagemin 
   - imagemin-pngquant
@@ -57,7 +57,11 @@ multiple sizes and formats (ICO, Apple Touch Icon, Android Chrome, etc.) ready f
    ```bash
    sudo npm install -g imagemin imagemin-pngquant sharp svgo png2icons
    ```
-
+   >Note: If you have `libvips` installed system-wide, `sharp` installation may fail. In that case, use:
+   >```bash
+   >sudo SHARP_IGNORE_GLOBAL_LIBVIPS=1 npm install -g imagemin imagemin-pngquant sharp svgo png2icons
+   >```
+   
 2. **Clone the repository and copy the script to a directory in your `PATH` variable for global access
    (e.g. `~/.local/bin/`), rename the script if needed (e.g. to `favgen`):**
    ```bash
