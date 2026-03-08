@@ -55,7 +55,7 @@ multiple sizes and formats (ICO, Apple Touch Icon, Android Chrome, etc.) ready f
 
 1. **Install dependencies:**
    ```bash
-   npm install -g imagemin imagemin-pngquant sharp svgo png2icons
+   sudo npm install -g imagemin imagemin-pngquant sharp svgo png2icons
    ```
 
 2. **Clone the repository and copy the script to a directory in your `PATH` variable for global access
