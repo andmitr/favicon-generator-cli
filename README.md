@@ -44,7 +44,7 @@ multiple sizes and formats (ICO, Apple Touch Icon, Android Chrome, etc.) ready f
 ## Dependencies
 
 - [Node.js](https://nodejs.org/) v24 LTS (tested and recommended version, specified in `.nvmrc`)
-- npm packages:
+- npm packages (installed automatically with the tool):
   - imagemin 
   - imagemin-pngquant
   - sharp
