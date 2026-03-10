@@ -8,7 +8,7 @@ multiple sizes and formats (ICO, Apple Touch Icon, Android Chrome, etc.) ready f
 ## Table of Contents
 
 - [Features](#features)
-- [Prerequisites](#prerequisites)
+- [Dependencies](#dependencies)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Sponsorship](#sponsorship)
@@ -41,7 +41,7 @@ multiple sizes and formats (ICO, Apple Touch Icon, Android Chrome, etc.) ready f
 > like [maskable.app](https://maskable.app/editor). Make sure your PWA
 > manifest references the maskable icon alongside other icons.
 
-## Prerequisites
+## Dependencies
 
 - [Node.js](https://nodejs.org/) v24 LTS (tested and recommended version, specified in `.nvmrc`)
 - npm packages:
@@ -53,39 +53,18 @@ multiple sizes and formats (ICO, Apple Touch Icon, Android Chrome, etc.) ready f
   
 ## Installation
 
-1. **Install dependencies:**
-   ```bash
-   sudo npm install -g imagemin imagemin-pngquant sharp svgo png2icons
-   ```
-   >Note: If you have `libvips` installed system-wide, `sharp` installation may fail. In that case, use:
-   >```bash
-   >sudo SHARP_IGNORE_GLOBAL_LIBVIPS=1 npm install -g imagemin imagemin-pngquant sharp svgo png2icons
-   >```
-   
-2. **Clone the repository and copy the script to a directory in your `PATH` variable for global access
-   (e.g. `~/.local/bin/`), rename the script if needed (e.g. to `favgen`):**
-   ```bash
-   git clone https://github.com/andmitr/favicon-generator-cli.git
-   cp ./favicon-generator-cli/fn_generate_favicons ~/.local/bin/favgen
-   ```   
+```bash
+sudo npm install -g git+https://github.com/andmitr/favicon-generator-cli.git
+```
+>Note: If you have `libvips` installed system-wide, `sharp` installation may fail. In that case, use:
+>```bash
+>sudo SHARP_IGNORE_GLOBAL_LIBVIPS=1 npm install -g git+https://github.com/andmitr/favicon-generator-cli.git
+>```
 
-   or **download the latest release archive** from [Releases](https://github.com/andmitr/favicon-generator-cli/releases/latest),
-   extract and copy the script:
-   ```bash
-   tar xzf favgen-*.tar.gz
-   cp fn_generate_favicons ~/.local/bin/favgen
-   ```
-
-   or **download only the script:**
-   ```bash
-   curl -o ~/.local/bin/favgen https://raw.githubusercontent.com/andmitr/favicon-generator-cli/master/fn_generate_favicons
-   ```
-
-3. **Make the script executable:**
-   ```bash
-   chmod +x ~/.local/bin/favgen
-   ```
-
+**To uninstall:** 
+```bash
+sudo npm uninstall -g favicon-generator-cli
+```
 ## Usage
 
 ```bash
