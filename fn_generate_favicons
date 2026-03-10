@@ -120,15 +120,7 @@ async function main() {
 
   try {
     const svgContent = await readFile(svgSrc, "utf8");
-    const optimized = optimize(svgContent, {
-      multipass: true,
-      plugins: [
-        {
-          name: "preset-default",
-          params: {overrides: {removeViewBox: false}},
-        },
-      ],
-    });
+    const optimized = optimize(svgContent, { multipass: true });
     await writeFile(path.join(distDir, "favicon.svg"), optimized.data);
   } catch (err) {
     console.error("SVG optimization failed:", err.message);
