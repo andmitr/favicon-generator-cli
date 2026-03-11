@@ -1,0 +1,7 @@
+.idea/
+todo.md
+.nvmrc
+.editorconfig
+.gitignore
+.github/
+eslint.config.js
