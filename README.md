@@ -3,8 +3,8 @@
 A Node.js CLI tool that generates a full set of favicons from PNG and SVG source images. Outputs optimized icons in 
 multiple sizes and formats (ICO, Apple Touch Icon, Android Chrome, etc.) ready for cross-browser use.
 
-[![License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square&logo=opensource)](LICENSE)
-
+[![License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square&logo=opensource)](LICENSE) 
+[![npm version](https://img.shields.io/npm/v/favicon-generator-cli?style=flat-square&logo=npm)](https://www.npmjs.com/package/favicon-generator-cli)
 ## Table of Contents
 
 - [Features](#features)
@@ -53,22 +53,49 @@ multiple sizes and formats (ICO, Apple Touch Icon, Android Chrome, etc.) ready f
   
 ## Installation
 
+### From npm
+
+```bash
+sudo npm install -g favicon-generator-cli
+```
+
+### From GitHub
+
 ```bash
 sudo npm install -g git+https://github.com/andmitr/favicon-generator-cli.git
 ```
->Note: If you have `libvips` installed system-wide, `sharp` installation may fail. In that case, use:
->```bash
->sudo SHARP_IGNORE_GLOBAL_LIBVIPS=1 npm install -g git+https://github.com/andmitr/favicon-generator-cli.git
->```
 
-**To uninstall:** 
+### Uninstall
+
 ```bash
 sudo npm uninstall -g favicon-generator-cli
 ```
+
+### Troubleshooting: libvips conflict
+
+If you have libvips installed system-wide, sharp installation may fail. Use SHARP_IGNORE_GLOBAL_LIBVIPS=1 to bypass it:
+
+```bash
+# From npm
+sudo SHARP_IGNORE_GLOBAL_LIBVIPS=1 npm install -g favicon-generator-cli
+
+# From GitHub
+sudo SHARP_IGNORE_GLOBAL_LIBVIPS=1 npm install -g git+https://github.com/andmitr/favicon-generator-cli.git
+
+# Run without installation
+SHARP_IGNORE_GLOBAL_LIBVIPS=1 npx --package=favicon-generator-cli favgen
+```
+
 ## Usage
 
 ```bash
 favgen [--png <path>] [--svg <path>] [--dist <output-dir>]
+```
+
+### Run without installation
+
+```bash
+npx --package=favicon-generator-cli favgen [--png <path>] [--svg <path>] [--dist <output-dir>]
 ```
 
 ### Arguments
