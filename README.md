@@ -4,7 +4,10 @@ A Node.js CLI tool that generates a full set of favicons from PNG and SVG source
 multiple sizes and formats (ICO, Apple Touch Icon, Android Chrome, etc.) ready for cross-browser use.
 
 [![License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square&logo=opensource)](LICENSE) 
+
 [![npm version](https://img.shields.io/npm/v/favicon-generator-cli?style=flat-square&logo=npm)](https://www.npmjs.com/package/favicon-generator-cli)
+[![Docker](https://img.shields.io/badge/ghcr.io-container-blue?style=flat-square&logo=docker)](https://github.com/andmitr/favicon-generator-cli/pkgs/container/favicon-generator-cli)
+
 ## Table of Contents
 
 - [Features](#features)
@@ -44,6 +47,7 @@ multiple sizes and formats (ICO, Apple Touch Icon, Android Chrome, etc.) ready f
 ## Dependencies
 
 - [Node.js](https://nodejs.org/) v24 LTS (tested and recommended version, specified in `.nvmrc`)
+- Docker (if you choose to run the tool via container)
 - npm packages (installed automatically with the tool):
   - imagemin 
   - imagemin-pngquant
@@ -63,6 +67,18 @@ sudo npm install -g favicon-generator-cli
 
 ```bash
 sudo npm install -g git+https://github.com/andmitr/favicon-generator-cli.git
+```
+
+### From Docker Registry (GitHub Container Registry)
+
+```bash
+docker pull ghcr.io/andmitr/favicon-generator-cli:latest
+```
+
+To use a shorter image name locally, create a tag:
+
+```shell
+docker tag ghcr.io/andmitr/favicon-generator-cli:latest favgen
 ```
 
 ### Uninstall
@@ -90,6 +106,33 @@ SHARP_IGNORE_GLOBAL_LIBVIPS=1 npx --package=favicon-generator-cli favgen
 
 ```bash
 favgen [--png <path>] [--svg <path>] [--dist <output-dir>]
+```
+
+### Docker 
+
+```bash
+docker run --rm -v "$PWD:/app" ghcr.io/andmitr/favicon-generator-cli:latest [--png <path>] [--svg <path>] [--dist <output-dir>]
+```
+
+If you created the local favgen image tag:
+
+```shell
+docker run --rm -v "$PWD:/app" favgen [--png <path>] [--svg <path>] [--dist <output-dir>]
+```
+
+#### Shortcuts (Alias)
+
+To avoid typing the long Docker command every time, add this alias to your ~/.bashrc or ~/.zshrc:
+
+```shell
+alias favgend='docker run --rm -v "$PWD:/app" ghcr.io/andmitr/favicon-generator-cli:latest'
+```
+
+Then you can use it just like the native command:
+
+```shell
+favgend --help
+favgend --dist favicons
 ```
 
 ### Run without installation
