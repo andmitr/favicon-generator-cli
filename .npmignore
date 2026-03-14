@@ -5,3 +5,5 @@ todo.md
 .gitignore
 .github/
 eslint.config.js
+Dockerfile
+.dockerignore
