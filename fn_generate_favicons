@@ -32,7 +32,7 @@ async function main() {
       case "-h":
         console.log(`
   Usage:
-    fn_generate_favicons [--png <path>] [--svg <path>] [--dist <output-dir>]
+    favgen [--png <path>] [--svg <path>] [--dist <output-dir>]
 
   Arguments:
     --png, -p     Path to png source. Defaults to "favicon_src.png" if not specified.
