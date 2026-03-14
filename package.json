@@ -1,11 +1,17 @@
 {
   "name": "favicon-generator-cli",
   "author": "Andrew Dmitriev <andrew.dmitriev.22@gmail.com>",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "license": "MIT",
   "description": "A Node.js CLI tool that generates a full set of favicons from PNG and SVG source images. Outputs optimized icons in multiple sizes and formats (ICO, Apple Touch Icon, Android Chrome, etc.) ready for cross-browser use.",
   "keywords": [
-    "favicons", "favicon generator", "Node.js tool", "icons", "ico", "apple touch icon", "web manifest images"
+    "favicons",
+    "favicon generator",
+    "Node.js tool",
+    "icons",
+    "ico",
+    "apple touch icon",
+    "web manifest images"
   ],
   "repository": {
     "type": "git",
@@ -25,10 +31,20 @@
   "main": "./fn_generate_favicons",
   "exports": "./fn_generate_favicons",
   "type": "module",
-  "os": ["linux", "darwin", "win32"],
-  "engines": {"node": "24"},
-  "scripts": {"eslint:fix": "npx eslint \"**/*.js\" --fix"},
-  "bin": {"favgen": "./fn_generate_favicons"},
+  "os": [
+    "linux",
+    "darwin",
+    "win32"
+  ],
+  "engines": {
+    "node": "24"
+  },
+  "scripts": {
+    "eslint:fix": "npx eslint \"**/*.js\" --fix"
+  },
+  "bin": {
+    "favgen": "./fn_generate_favicons"
+  },
   "devDependencies": {
     "@stylistic/stylelint-plugin": "^3.1.2",
     "eslint": "^9.22.0",
