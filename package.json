@@ -17,7 +17,6 @@
     "type": "git",
     "url": "git+https://github.com/andmitr/favicon-generator-cli"
   },
-  "homepage": "https://andmitr.github.io/favicon-generator-cli#readme",
   "bugs": {
     "url": "https://github.com/andmitr/favicon-generator-cli/issues",
     "email": "andrew.dmitriev.22@gmail.com"
