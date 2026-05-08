@@ -1,7 +1,7 @@
 {
   "name": "favicon-generator-cli",
-  "author": "Andrew Dmitriev <andrew.dmitriev.22@gmail.com>",
-  "version": "1.2.3",
+  "author": "Andrew Dmitriev <andrew.dmitriev.work@gmail.com>",
+  "version": "1.2.4",
   "license": "MIT",
   "description": "A Node.js CLI tool that generates a full set of favicons from PNG and SVG source images. Outputs optimized icons in multiple sizes and formats (ICO, Apple Touch Icon, Android Chrome, etc.) ready for cross-browser use.",
   "keywords": [
@@ -19,14 +19,8 @@
   },
   "bugs": {
     "url": "https://github.com/andmitr/favicon-generator-cli/issues",
-    "email": "andrew.dmitriev.22@gmail.com"
+    "email": "andrew.dmitriev.work@gmail.com"
   },
-  "funding": [
-    {
-      "type": "boosty",
-      "url": "https://boosty.to/andmitr/donate"
-    }
-  ],
   "main": "./fn_generate_favicons",
   "exports": "./fn_generate_favicons",
   "type": "module",
