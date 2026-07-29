@@ -585,6 +585,7 @@ FodyWeavers.xsd
 .windsurfrules
 .lingma/
 .windsurf/
+.qoder/
 GEMINI.md
 QWEN.md
 AGENTS.md
@@ -625,3 +626,7 @@ todo
 todo.md
 testfile*
 notes.md
+auth.json
+cc-review.md
+grok-review.md
+deepseek-review.md
