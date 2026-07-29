@@ -6,6 +6,8 @@ multiple sizes and formats (ICO, Apple Touch Icon, Android Chrome, etc.) ready f
 [![License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square&logo=opensource)](LICENSE) 
 
 [![npm version](https://img.shields.io/npm/v/favicon-generator-cli?style=flat-square&logo=npm)](https://www.npmjs.com/package/favicon-generator-cli)
+[![npm downloads](https://img.shields.io/npm/dm/favicon-generator-cli?style=flat-square&logo=npm&color=blue)](https://www.npmjs.com/package/favicon-generator-cli)
+
 [![Docker](https://img.shields.io/badge/ghcr.io-container-blue?style=flat-square&logo=docker)](https://github.com/andmitr/favicon-generator-cli/pkgs/container/favicon-generator-cli)
 
 ## Table of Contents
