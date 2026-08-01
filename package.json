@@ -1,7 +1,7 @@
 {
   "name": "favicon-generator-cli",
   "author": "Andrew Dmitriev <andrew.dmitriev.work@gmail.com>",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "license": "MIT",
   "description": "A Node.js CLI tool that generates a full set of favicons from PNG and SVG source images. Outputs optimized icons in multiple sizes and formats (ICO, Apple Touch Icon, Android Chrome, etc.) ready for cross-browser use.",
   "keywords": [
@@ -39,7 +39,6 @@
     "favgen": "./fn_generate_favicons"
   },
   "devDependencies": {
-    "@stylistic/stylelint-plugin": "^3.1.2",
     "eslint": "^9.22.0",
     "globals": "^16.0.0"
   },
