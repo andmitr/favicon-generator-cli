@@ -145,6 +145,7 @@ npx --package=favicon-generator-cli favgen [--png <path>] [--svg <path>] [--dist
 | --png    | -p    | ./favicon_src.png | Path to the source PNG image         |
 | --svg    | -s    | ./favicon_src.svg | Path to the source SVG image         |
 | --dist   | -d    | ./favicons_xxxx   | Output directory for generated files |
+| --version | -v   | —                 | Print version and exit               |
 | --help   | -h    | —                 | Show help message and exit           |
 
 ### Examples

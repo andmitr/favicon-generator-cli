@@ -9,6 +9,8 @@ import sharp from "sharp";
 import {optimize} from "svgo";
 import png2icons from "png2icons";
 
+const { version } = JSON.parse(fs.readFileSync(new URL('./package.json', import.meta.url), 'utf8'));
+
 async function main() {
   const args = {};
   const cliArgs = process.argv.slice(2);
@@ -28,6 +30,11 @@ async function main() {
     case "-d":
       args.dist = cliArgs[++i];
       break;
+    case "--version":
+    case "-v":
+      console.log(version);
+      process.exit(0);
+      break;
     case "--help":
     case "-h":
       console.log(`
@@ -41,6 +48,7 @@ async function main() {
     --svg, -s     Path to SVG source. Defaults to "favicon_src.svg".
                   If file not found, SVG processing is skipped.
     --dist, -d    Output directory. Creates temporary directory if not specified.
+    --version, -v  Print version and exit.
     --help, -h    Show this help message and exit.
 
   Generated files:
