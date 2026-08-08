@@ -627,6 +627,7 @@ todo.md
 testfile*
 notes.md
 auth.json
+claude-review.md
 cc-review.md
 grok-review.md
 deepseek-review.md
