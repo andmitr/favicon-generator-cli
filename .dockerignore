@@ -600,3 +600,5 @@ notes.md
 eslint.config.js
 .nvmrc
 .npmignore
+favicon_src.png
+favicon_src.svg

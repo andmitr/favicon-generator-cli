@@ -7,3 +7,5 @@ todo.md
 eslint.config.js
 Dockerfile
 .dockerignore
+favicon_src.png
+favicon_src.svg
