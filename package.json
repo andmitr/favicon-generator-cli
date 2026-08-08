@@ -33,7 +33,8 @@
     "node": "24"
   },
   "scripts": {
-    "eslint:fix": "npx eslint \"**/*.js\" --fix"
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "bin": {
     "favgen": "./fn_generate_favicons"

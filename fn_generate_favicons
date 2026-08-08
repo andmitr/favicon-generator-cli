@@ -16,21 +16,21 @@ async function main() {
   for (let i = 0; i < cliArgs.length; i++) {
     const arg = cliArgs[i];
     switch (arg) {
-      case "--png":
-      case "-p":
-        args.pngSrc = cliArgs[++i];
-        break;
-      case "--svg":
-      case "-s":
-        args.svgSrc = cliArgs[++i];
-        break;
-      case "--dist":
-      case "-d":
-        args.dist = cliArgs[++i];
-        break;
-      case "--help":
-      case "-h":
-        console.log(`
+    case "--png":
+    case "-p":
+      args.pngSrc = cliArgs[++i];
+      break;
+    case "--svg":
+    case "-s":
+      args.svgSrc = cliArgs[++i];
+      break;
+    case "--dist":
+    case "-d":
+      args.dist = cliArgs[++i];
+      break;
+    case "--help":
+    case "-h":
+      console.log(`
   Usage:
     favgen [--png <path>] [--svg <path>] [--dist <output-dir>]
 
@@ -53,7 +53,7 @@ async function main() {
     - icon-192.png
     - icon-512.png
       `);
-        process.exit(0);
+      process.exit(0);
     }
   }
 
@@ -70,14 +70,14 @@ async function main() {
 
   const distDir = args.dist || fs.mkdtempSync(path.join(process.cwd(), "favicons_"));
 
-  if (args.dist) fs.mkdirSync(distDir, {recursive: true});
+  if (args.dist) {fs.mkdirSync(distDir, {recursive: true});}
 
   try {
     const pngBuffer = await readFile(pngSrc);
     const optimizedPng = await sharp(pngBuffer)
       .resize(256, 256, {
         fit: "contain",
-        background: { r: 0, g: 0, b: 0, alpha: 0 },
+        background: { r: 0, g: 0, b: 0, alpha: 0 }
       })
       .png({ compressionLevel: 9, palette: true, colors: 128 })
       .toBuffer();
@@ -93,7 +93,7 @@ async function main() {
     {name: "favicon-48x48.png", size: 48},
     {name: "apple-touch-icon.png", size: 180},
     {name: "icon-192.png", size: 192},
-    {name: "icon-512.png", size: 512},
+    {name: "icon-512.png", size: 512}
   ];
 
   await Promise.all(
@@ -103,19 +103,19 @@ async function main() {
         await sharp(pngSrc)
           .resize(size, size, {
             fit: "contain",
-            background: {r: 0, g: 0, b: 0, alpha: 0},
+            background: {r: 0, g: 0, b: 0, alpha: 0}
           })
           .png({compressionLevel: 6})
           .toFile(outputPath);
 
         await imagemin([outputPath], {
           destination: distDir,
-          plugins: [imageminPngquant({quality: [0.7, 0.85]})],
+          plugins: [imageminPngquant({quality: [0.7, 0.85]})]
         });
       } catch (err) {
         console.error(`Failed to process ${name}:`, err.message);
       }
-    }),
+    })
   );
 
   try {

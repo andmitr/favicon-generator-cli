@@ -3,6 +3,7 @@ import globals from "globals";
 
 export default [
   {
+    files: ["**/*.js", "fn_generate_favicons"],
     rules: {
       "semi": ["error", "always"],
       "quotes": ["error", "double"],
@@ -47,7 +48,6 @@ export default [
     },
     languageOptions: {
       globals: {
-        ...globals.browser,
         ...globals.node,
         ...globals.es2024
       },
