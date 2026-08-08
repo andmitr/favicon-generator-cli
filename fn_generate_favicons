@@ -58,12 +58,12 @@ async function main() {
   }
 
   const pngSrc = path.resolve(process.cwd(), args.pngSrc || "favicon_src.png");
-  const svgSrc = path.resolve(process.cwd(), args.svgSrc || "favicon_src.svg");
   if (!fs.existsSync(pngSrc)) {
     console.error("PNG source file not found");
     process.exit(1);
   }
-  if (!fs.existsSync(svgSrc)) {
+  const svgSrc = args.svgSrc ? path.resolve(process.cwd(), args.svgSrc) : null;
+  if (svgSrc && !fs.existsSync(svgSrc)) {
     console.error("SVG source file not found");
     process.exit(1);
   }
@@ -118,12 +118,14 @@ async function main() {
     })
   );
 
-  try {
-    const svgContent = await readFile(svgSrc, "utf8");
-    const optimized = optimize(svgContent, { multipass: true });
-    await writeFile(path.join(distDir, "favicon.svg"), optimized.data);
-  } catch (err) {
-    console.error("SVG optimization failed:", err.message);
+  if (svgSrc) {
+    try {
+      const svgContent = await readFile(svgSrc, "utf8");
+      const optimized = optimize(svgContent, { multipass: true });
+      await writeFile(path.join(distDir, "favicon.svg"), optimized.data);
+    } catch (err) {
+      console.error("SVG optimization failed:", err.message);
+    }
   }
 }
 
