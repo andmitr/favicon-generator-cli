@@ -7,7 +7,11 @@
   "keywords": [
     "favicons",
     "favicon generator",
-    "Node.js tool",
+    "cli",
+    "image processing",
+    "Node.js",
+    "tools",
+    "utility",
     "icons",
     "ico",
     "apple touch icon",
@@ -20,6 +24,10 @@
   "bugs": {
     "url": "https://github.com/andmitr/favicon-generator-cli/issues",
     "email": "andrew.dmitriev.work@gmail.com"
+  },
+  "funding": {
+    "type": "custom",
+    "url": "https://andmitr.github.io/donate/"
   },
   "main": "./fn_generate_favicons",
   "exports": "./fn_generate_favicons",
