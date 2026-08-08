@@ -3,12 +3,7 @@
 A Node.js CLI tool that generates a full set of favicons from PNG and SVG source images. Outputs optimized icons in 
 multiple sizes and formats (ICO, Apple Touch Icon, Android Chrome, etc.) ready for cross-browser use.
 
-[![License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square&logo=opensource)](LICENSE) 
-
-[![npm version](https://img.shields.io/npm/v/favicon-generator-cli?style=flat-square&logo=npm)](https://www.npmjs.com/package/favicon-generator-cli)
-[![npm downloads](https://img.shields.io/npm/dm/favicon-generator-cli?style=flat-square&logo=npm&color=blue)](https://www.npmjs.com/package/favicon-generator-cli)
-
-[![Docker](https://img.shields.io/badge/ghcr.io-container-blue?style=flat-square&logo=docker)](https://github.com/andmitr/favicon-generator-cli/pkgs/container/favicon-generator-cli)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square&logo=opensource)](LICENSE) [![npm version](https://img.shields.io/npm/v/favicon-generator-cli?style=flat-square&logo=npm)](https://www.npmjs.com/package/favicon-generator-cli) [![npm downloads](https://img.shields.io/npm/dm/favicon-generator-cli?style=flat-square&logo=npm&color=blue)](https://www.npmjs.com/package/favicon-generator-cli) [![Docker](https://img.shields.io/badge/ghcr.io-container-blue?style=flat-square&logo=docker)](https://github.com/andmitr/favicon-generator-cli/pkgs/container/favicon-generator-cli)
 
 ## Table of Contents
 
@@ -22,14 +17,15 @@ multiple sizes and formats (ICO, Apple Touch Icon, Android Chrome, etc.) ready f
 
 - **Generated files:**
   - `favicon.ico` (multi-size: 16px, 32px, 48px, 256px from PNG)
-  - `favicon.svg` (optimized from source SVG)
   - `favicon-16x16.png`
   - `favicon-32x32.png`
   - `favicon-48x48.png`
   - `apple-touch-icon.png` (180×180px)
   - `icon-192.png` and `icon-512.png` (for Android/PWA manifest)
-- **PNG and SVG input:** Accepts both formats as source material. Defaults
-  to `./favicon_src.png` and `./favicon_src.svg`.
+  - `favicon.svg` (only if SVG source provided)
+- **PNG and SVG input:** Accepts both formats as source material. PNG is
+  required (defaults to `./favicon_src.png`). SVG is optional (defaults to
+  `./favicon_src.svg`).
 - **Image optimization:** Uses `sharp` for PNG resizing,
   `imagemin` + `imagemin-pngquant` for PNG compression, `svgo` for SVG
   optimization, and `png2icons` for ICO generation.
@@ -165,6 +161,7 @@ favgen --dist icons
 Add the generated favicons to the `<head>` of your HTML:
 ```html
 <link rel="icon" href="/favicon.ico" type="image/x-icon">
+<!-- Include the following line only if you used an SVG source file -->
 <link rel="icon" href="/favicon.svg" sizes="any" type="image/svg+xml">
 <link rel="icon" href="/favicon-16x16.png" sizes="16x16" type="image/png">
 <link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png">
